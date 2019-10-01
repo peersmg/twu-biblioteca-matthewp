@@ -1,6 +1,7 @@
 package com.twu.biblioteca;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Menu {
     List<Book> books;
@@ -9,7 +10,18 @@ public class Menu {
         this.books = books;
 
         welcomeMessage();
-        listBooks();
+        waitForSelection();
+    }
+
+    private void waitForSelection(){
+        System.out.println("Options: Show Books [1] ");
+        System.out.println("Please enter selection: ");
+        Scanner scanner = new Scanner(System.in);
+        int selection = scanner.nextInt();
+
+        if(selection == 1){
+            listBooks();
+        }
     }
 
     private void welcomeMessage(){
