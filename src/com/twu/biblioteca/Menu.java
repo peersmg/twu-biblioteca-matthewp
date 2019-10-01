@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 public class Menu {
     List<Book> books;
+    static final int VALID_OPTIONS = 1;
 
     public Menu(List<Book> books) {
         this.books = books;
@@ -14,11 +15,28 @@ public class Menu {
     }
 
     private void waitForSelection(){
-        System.out.println("Options: Show Books [1] ");
-        System.out.println("Please enter selection: ");
-        Scanner scanner = new Scanner(System.in);
-        int selection = scanner.nextInt();
+        boolean validSelection = false;
+        int selection = -1;
+        
+        while (!validSelection){
+            System.out.println("Options: Show Books [1] ");
+            System.out.println("Please enter selection: ");
 
+            Scanner scanner = new Scanner(System.in);
+            selection = scanner.nextInt();
+
+            if(selection > VALID_OPTIONS || selection < 1){
+                System.out.println("Please select a valid option!");
+            }
+            else {
+                validSelection = true;
+            }
+        }
+        actOnSelection(selection);
+    }
+
+    private void actOnSelection(int selection)
+    {
         if(selection == 1){
             listBooks();
         }
