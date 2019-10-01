@@ -6,26 +6,39 @@ import java.util.Scanner;
 public class Menu {
     List<Book> books;
     static final int VALID_OPTIONS = 1;
+    boolean applicationRunning = true;
 
     public Menu(List<Book> books) {
         this.books = books;
 
         welcomeMessage();
-        waitForSelection();
+
+        while (applicationRunning){
+            waitForSelection();
+        }
+
+    }
+
+    public boolean isApplicationRunning() {
+        return applicationRunning;
+    }
+
+    public void setApplicationRunning(boolean applicationRunning) {
+        this.applicationRunning = applicationRunning;
     }
 
     private void waitForSelection(){
         boolean validSelection = false;
         int selection = -1;
-        
+
         while (!validSelection){
-            System.out.println("Options: Show Books [1] ");
+            System.out.println("Options: Exit Application [0] Show Books [1] ");
             System.out.println("Please enter selection: ");
 
             Scanner scanner = new Scanner(System.in);
             selection = scanner.nextInt();
 
-            if(selection > VALID_OPTIONS || selection < 1){
+            if(selection > VALID_OPTIONS || selection < 0){
                 System.out.println("Please select a valid option!");
             }
             else {
@@ -37,8 +50,13 @@ public class Menu {
 
     private void actOnSelection(int selection)
     {
-        if(selection == 1){
-            listBooks();
+        switch (selection){
+            case 1:
+                listBooks();
+                break;
+            case 0:
+                setApplicationRunning(false);
+                break;
         }
     }
 
