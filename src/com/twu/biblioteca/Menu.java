@@ -12,11 +12,16 @@ public class Menu {
         this.books = books;
 
         welcomeMessage();
+    }
 
+    public void runLibrary(){
         while (applicationRunning){
             waitForSelection();
         }
+    }
 
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 
     public boolean isApplicationRunning() {

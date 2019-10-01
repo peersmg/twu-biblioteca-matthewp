@@ -13,5 +13,6 @@ public class BibliotecaApp {
         myBooks.add(new Book("The Shining", "SK", 1977, false));
 
         Menu menu = new Menu(myBooks);
+        menu.runLibrary();
     }
 }
