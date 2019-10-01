@@ -45,28 +45,39 @@ public class Menu {
                 validSelection = true;
             }
         }
-        actOnSelection(selection);
+
+        System.out.println(actOnSelection(selection));
     }
 
-    private void actOnSelection(int selection)
+    public String actOnSelection(int selection)
     {
+        String response = "";
         switch (selection){
             case 1:
-                listBooks();
+                response = listBooks();
                 break;
             case 0:
                 setApplicationRunning(false);
+                response = "Exiting application...";
+                break;
+            default:
+                response = "Selection Error!";
                 break;
         }
+
+        return response;
     }
 
     private void welcomeMessage(){
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
     }
 
-    private void listBooks(){
+    private String listBooks(){
+        String responce = "";
         for (int i = 0; i < books.size(); i++) {
-            System.out.println(books.get(i).bookInfo());
+            responce += books.get(i).bookInfo() + "\n";
         }
+
+        return responce;
     }
 }
