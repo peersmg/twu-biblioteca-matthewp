@@ -76,7 +76,7 @@ public class Menu {
 
     public String actOnSelection(int selection)
     {
-        String response = "";
+        String response;
         switch (selection){
             case 1:
                 response = bookStorage.printAvailableBooks();

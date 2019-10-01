@@ -22,6 +22,15 @@ public class BookStorage {
 
     }
 
+    public boolean returnBook(int id){
+        if(checkedOutBooks.containsKey(id)){
+            availableBooks.put(id, availableBooks.get(id));
+            checkedOutBooks.remove(id);
+            return true;
+        }
+        return false;
+    }
+
     public List<Book> getAvailableBooks() {
         return new ArrayList<Book>(availableBooks.values());
     }
