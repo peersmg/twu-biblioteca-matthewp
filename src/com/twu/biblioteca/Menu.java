@@ -32,9 +32,23 @@ public class Menu {
         System.out.println("Options: Exit Application [0] | Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]");
         System.out.println("Please enter selection: ");
 
-        int selection = inputScanner.nextInt();
+        int selection = readNextInt();
 
         System.out.println(actOnSelection(selection));
+    }
+
+    private int readNextInt()
+    {
+        String input = inputScanner.next();
+
+        try {
+            return Integer.parseInt(input);
+        }
+        catch (NumberFormatException nfe)
+        {
+            return -1;
+        }
+
     }
 
     private String checkoutBook()
@@ -43,7 +57,7 @@ public class Menu {
 
         System.out.println("Please enter book ID to checkout or 0 to cancel: ");
 
-        int selection = inputScanner.nextInt();
+        int selection = readNextInt();
 
         if(selection == 0){
             return "Cancelling checkout.";
@@ -65,10 +79,9 @@ public class Menu {
     {
         String response;
 
-        System.out.println("Please enter book number to return or 0 to cancel: ");
+        System.out.println("Please enter book ID to return or 0 to cancel: ");
 
-        Scanner scanner = new Scanner(System.in);
-        int selection = scanner.nextInt();
+        int selection = readNextInt();
 
         if(selection == 0){
             return "Cancelling return.";
