@@ -28,4 +28,16 @@ public class MenuTests {
 
         assertThat(testMenu.actOnSelection(1), is("Test | Matt | 2019\nTest1 | Matt1 | 2019\n"));
     }
+
+    @Test
+    public void checkedOutBookNotInList(){
+        List<Book> dummyBooks = new ArrayList<Book>();
+        dummyBooks.add(new Book("Test", "Matt", 2019, false));
+        dummyBooks.add(new Book("Test1", "Matt1", 2019, true));
+        testMenu.setBooks(dummyBooks);
+
+        assertThat(testMenu.actOnSelection(1), is("Test | Matt | 2019\n"));
+    }
+
+
 }
