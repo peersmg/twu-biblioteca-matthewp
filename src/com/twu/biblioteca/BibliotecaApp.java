@@ -12,10 +12,6 @@ public class BibliotecaApp {
         myBooks.add(new Book("Game Of Thrones", "JRR", 2014));
         myBooks.add(new Book("The Shining", "SK", 1977));
 
-        System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
-
-        for (int i = 0; i < myBooks.size(); i++) {
-            System.out.println(myBooks.get(i).bookInfo());
-        }
+        Menu menu = new Menu(myBooks);
     }
 }
