@@ -3,6 +3,7 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -12,7 +13,7 @@ public class BookTests {
 
     @Before
     public void setup(){
-        testingBook = new Book("Test");
+        testingBook = new Book("Test", "Matt", 2018);
     }
 
     @Test
@@ -21,4 +22,8 @@ public class BookTests {
         assertThat(testingBook.getTitle(),is("Test"));
     }
 
+    @Test
+    public void bookInfoSetCorrectly() {
+        assertThat(testingBook.bookInfo(), is("Test | Matt | 2018"));
+    }
 }
