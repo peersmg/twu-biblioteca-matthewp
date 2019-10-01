@@ -22,15 +22,6 @@ public class BookStorage {
 
     }
 
-    public boolean returnBook(int id){
-        if(checkedOutBooks.containsKey(id)){
-            availableBooks.put(id, checkedOutBooks.get(id));
-            checkedOutBooks.remove(id);
-            return true;
-        }
-        return false;
-    }
-
     public List<Book> getAvailableBooks() {
         return new ArrayList<Book>(availableBooks.values());
     }
@@ -63,6 +54,17 @@ public class BookStorage {
         if(availableBooks.containsKey(id)){
             checkedOutBooks.put(id, availableBooks.get(id));
             availableBooks.remove(id);
+            checkedOutBooks.get(id).checkOut();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean returnBook(int id){
+        if(checkedOutBooks.containsKey(id)){
+            availableBooks.put(id, checkedOutBooks.get(id));
+            checkedOutBooks.remove(id);
+            availableBooks.get(id).checkIn();
             return true;
         }
         return false;
