@@ -82,7 +82,7 @@ public class Menu {
         else
         {
             books.get(selection-1).checkOut();
-            response = "Checkout successful!";
+            response = "Thank you! Enjoy the book";
         }
 
         return response;
