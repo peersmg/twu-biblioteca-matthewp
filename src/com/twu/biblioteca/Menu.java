@@ -37,7 +37,7 @@ public class Menu {
         int selection = -1;
 
         while (!validSelection){
-            System.out.println("Options: Exit Application [0] Show Books [1] Check out book [2]");
+            System.out.println("Options: Exit Application [0] | Show Books [1] | Check out book [2]");
             System.out.println("Please enter selection: ");
 
             Scanner scanner = new Scanner(System.in);
@@ -68,7 +68,7 @@ public class Menu {
             selection = scanner.nextInt();
 
             if(selection > books.size() || selection < 0){
-                System.out.println("Please select a valid option!");
+                System.out.println("Sorry, that book is not available. Please select a valid option!");
             }
             else {
                 validSelection = true;
