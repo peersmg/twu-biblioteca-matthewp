@@ -5,16 +5,17 @@ import java.util.Scanner;
 public class Menu {
     BookStorage bookStorage;
     boolean applicationRunning = true;
+    Scanner inputScanner;
 
     public Menu(BookStorage bookStorage) {
         this.bookStorage = bookStorage;
-
+        this.inputScanner = new Scanner(System.in);
         welcomeMessage();
     }
 
-    public void runLibrary(){
+    public void runInputListener(){
         while (applicationRunning){
-            waitForSelection();
+            getUserSelection();
         }
     }
 
@@ -22,35 +23,27 @@ public class Menu {
         this.bookStorage = bookStorage;
     }
 
-    public boolean isApplicationRunning() {
-        return applicationRunning;
-    }
-
     public void setApplicationRunning(boolean applicationRunning) {
         this.applicationRunning = applicationRunning;
     }
 
-    private void waitForSelection(){
-
-        int selection = -1;
+    private void getUserSelection(){
 
         System.out.println("Options: Exit Application [0] | Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]");
         System.out.println("Please enter selection: ");
 
-        Scanner scanner = new Scanner(System.in);
-        selection = scanner.nextInt();
+        int selection = inputScanner.nextInt();
 
         System.out.println(actOnSelection(selection));
     }
 
     private String checkoutBook()
     {
-        String response = "";
+        String response;
 
-        System.out.println("Please enter book number to checkout or 0 to cancel: ");
+        System.out.println("Please enter book ID to checkout or 0 to cancel: ");
 
-        Scanner scanner = new Scanner(System.in);
-        int selection = scanner.nextInt();
+        int selection = inputScanner.nextInt();
 
         if(selection == 0){
             return "Cancelling checkout.";
@@ -59,7 +52,7 @@ public class Menu {
         boolean result = bookStorage.checkoutBook(selection);
 
         if(!result){
-            response = "Sorry, that book is not available. Please select a valid option!";
+            response = "Sorry, that book is not available. Please enter a valid book ID!";
         }
         else {
             response = "Thank you! Enjoy the book";
@@ -70,7 +63,7 @@ public class Menu {
 
     private String returnBook()
     {
-        String response = "";
+        String response;
 
         System.out.println("Please enter book number to return or 0 to cancel: ");
 

@@ -23,7 +23,12 @@ public class Book {
         return id;
     }
 
-    public String bookInfo() {
+    public boolean getCheckedOut()
+    {
+        return checkedOut;
+    }
+
+    public String formattedBookInfo() {
         return id + " | "+title +" | "+ author +" | "+ yearPublished;
     }
 
@@ -35,8 +40,4 @@ public class Book {
         }
     }
 
-    public boolean getCheckedOut()
-    {
-        return checkedOut;
-    }
 }

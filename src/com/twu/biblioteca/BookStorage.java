@@ -43,7 +43,7 @@ public class BookStorage {
     {
         String bookList = "";
         for (Book book: availableBooks.values()){
-            bookList += book.bookInfo() + "\n";
+            bookList += book.formattedBookInfo() + "\n";
         }
         return bookList;
     }
@@ -52,7 +52,7 @@ public class BookStorage {
     {
         String bookList = "";
         for (Book book: checkedOutBooks.values()){
-            bookList += book.bookInfo() + "\n";
+            bookList += book.formattedBookInfo() + "\n";
         }
         return bookList;
     }

@@ -24,7 +24,7 @@ public class BookTests {
 
     @Test
     public void bookInfoSetCorrectly() {
-        assertThat(testingBook.bookInfo(), is("1 | Test | Matt | 2018"));
+        assertThat(testingBook.formattedBookInfo(), is("1 | Test | Matt | 2018"));
     }
 
     @Test
