@@ -13,7 +13,7 @@ public class BookTests {
 
     @Before
     public void setup(){
-        testingBook = new Book("Test", "Matt", 2018, false);
+        testingBook = new Book(1,"Test", "Matt", 2018, false);
     }
 
     @Test
@@ -24,7 +24,7 @@ public class BookTests {
 
     @Test
     public void bookInfoSetCorrectly() {
-        assertThat(testingBook.bookInfo(), is("Test | Matt | 2018"));
+        assertThat(testingBook.bookInfo(), is("1 | Test | Matt | 2018"));
     }
 
     @Test

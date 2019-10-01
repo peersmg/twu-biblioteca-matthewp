@@ -14,38 +14,38 @@ public class MenuTests {
 
     @Before
     public void init(){
-        List<Book> dummyBooks = new ArrayList<Book>();
+        BookStorage dummyBooks = new BookStorage();
         testMenu = new Menu(dummyBooks);
     }
 
     @Test
     public void optionOneReturnsBookList()
     {
-        List<Book> dummyBooks = new ArrayList<Book>();
-        dummyBooks.add(new Book("Test", "Matt", 2019, false));
-        dummyBooks.add(new Book("Test1", "Matt1", 2019, false));
+        BookStorage dummyBooks = new BookStorage();
+        dummyBooks.addBook(new Book(1,"Test", "Matt", 2019, false));
+        dummyBooks.addBook(new Book(2,"Test1", "Matt1", 2019, false));
         testMenu.setBooks(dummyBooks);
 
-        assertThat(testMenu.actOnSelection(1), is("1. Test | Matt | 2019\n2. Test1 | Matt1 | 2019\n"));
+        assertThat(testMenu.actOnSelection(1), is("1 | Test | Matt | 2019\n2 | Test1 | Matt1 | 2019\n"));
     }
 
     @Test
     public void checkedOutBookNotInAvailableList(){
-        List<Book> dummyBooks = new ArrayList<Book>();
-        dummyBooks.add(new Book("Test", "Matt", 2019, false));
-        dummyBooks.add(new Book("Test1", "Matt1", 2019, true));
+        BookStorage dummyBooks = new BookStorage();
+        dummyBooks.addBook(new Book(1,"Test", "Matt", 2019, false));
+        dummyBooks.addBook(new Book(2,"Test1", "Matt1", 2019, true));
         testMenu.setBooks(dummyBooks);
 
-        assertThat(testMenu.actOnSelection(1), is("1. Test | Matt | 2019\n"));
+        assertThat(testMenu.actOnSelection(1), is("1 | Test | Matt | 2019\n"));
     }
 
     @Test
     public void checkedOutBookInNotAvailableList(){
-        List<Book> dummyBooks = new ArrayList<Book>();
-        dummyBooks.add(new Book("Test", "Matt", 2019, false));
-        dummyBooks.add(new Book("Test1", "Matt1", 2019, true));
+        BookStorage dummyBooks = new BookStorage();
+        dummyBooks.addBook(new Book(1,"Test", "Matt", 2019, false));
+        dummyBooks.addBook(new Book(2,"Test1", "Matt1", 2019, true));
         testMenu.setBooks(dummyBooks);
 
-        assertThat(testMenu.actOnSelection(3), is("2. Test1 | Matt1 | 2019\n"));
+        assertThat(testMenu.actOnSelection(3), is("2 | Test1 | Matt1 | 2019\n"));
     }
 }

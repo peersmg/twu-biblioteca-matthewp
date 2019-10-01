@@ -1,15 +1,14 @@
 package com.twu.biblioteca;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    List<Book> books;
+    BookStorage bookStorage;
     static final int VALID_OPTIONS = 3;
     boolean applicationRunning = true;
 
-    public Menu(List<Book> books) {
-        this.books = books;
+    public Menu(BookStorage bookStorage) {
+        this.bookStorage = bookStorage;
 
         welcomeMessage();
     }
@@ -20,8 +19,8 @@ public class Menu {
         }
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setBooks(BookStorage bookStorage) {
+        this.bookStorage = bookStorage;
     }
 
     public boolean isApplicationRunning() {
@@ -58,36 +57,19 @@ public class Menu {
     {
         String response = "";
 
-        boolean validSelection = false;
-        int selection = -1;
+        System.out.println("Please enter book number to checkout or 0 to cancel: ");
 
-        while (!validSelection){
-            System.out.println("Please enter book number to checkout or 0 to cancel: ");
+        Scanner scanner = new Scanner(System.in);
+        int selection = scanner.nextInt();
 
-            Scanner scanner = new Scanner(System.in);
-            selection = scanner.nextInt();
+        boolean result = bookStorage.checkoutBook(selection);
 
-            if(selection == 0)
-            {
-                return "Checkout aborted";
-            }
-
-            if(selection > books.size() || selection < 0){
-                System.out.println("Sorry, that book is not available. Please select a valid option!");
-            }
-            else if(books.get(selection-1).getCheckedOut())
-            {
-                System.out.println("Sorry, that book is not available.");
-            }
-            else {
-                validSelection = true;
-            }
+        if(!result){
+            response = "Sorry, that book is not available. Please select a valid option!";
         }
-
-
-        books.get(selection-1).checkOut();
-        response = "Thank you! Enjoy the book";
-
+        else {
+            response = "Thank you! Enjoy the book";
+        }
 
         return response;
     }
@@ -97,13 +79,13 @@ public class Menu {
         String response = "";
         switch (selection){
             case 1:
-                response = listAvailableBooks();
+                response = bookStorage.printAvailableBooks();
                 break;
             case 2:
                 response = waitForCheckout();
                 break;
             case 3:
-                response = listCheckedOutBooks();
+                response = bookStorage.printCheckedOutBooks();
                 break;
             case 0:
                 setApplicationRunning(false);
@@ -119,27 +101,5 @@ public class Menu {
 
     private void welcomeMessage(){
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
-    }
-
-    private String listAvailableBooks(){
-        String response = "";
-        for (int i = 0; i < books.size(); i++) {
-            if(!books.get(i).getCheckedOut()) {
-                response += (i+1) +". "+ books.get(i).bookInfo() + "\n";
-            }
-        }
-
-        return response;
-    }
-
-    private String listCheckedOutBooks(){
-        String response = "";
-        for (int i = 0; i < books.size(); i++) {
-            if(books.get(i).getCheckedOut()) {
-                response += (i+1) +". "+ books.get(i).bookInfo() + "\n";
-            }
-        }
-
-        return response;
     }
 }
