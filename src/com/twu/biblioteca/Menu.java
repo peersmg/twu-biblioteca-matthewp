@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Menu {
     BookStorage bookStorage;
-    static final int VALID_OPTIONS = 3;
     boolean applicationRunning = true;
 
     public Menu(BookStorage bookStorage) {
@@ -32,28 +31,19 @@ public class Menu {
     }
 
     private void waitForSelection(){
-        boolean validSelection = false;
+
         int selection = -1;
 
-        while (!validSelection){
-            System.out.println("Options: Exit Application [0] | Show Available Books [1] | Check out book [2] | Show checked out books [3]");
-            System.out.println("Please enter selection: ");
+        System.out.println("Options: Exit Application [0] | Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]");
+        System.out.println("Please enter selection: ");
 
-            Scanner scanner = new Scanner(System.in);
-            selection = scanner.nextInt();
-
-            if(selection > VALID_OPTIONS || selection < 0){
-                System.out.println("Please select a valid option!");
-            }
-            else {
-                validSelection = true;
-            }
-        }
+        Scanner scanner = new Scanner(System.in);
+        selection = scanner.nextInt();
 
         System.out.println(actOnSelection(selection));
     }
 
-    private String waitForCheckout()
+    private String checkoutBook()
     {
         String response = "";
 
@@ -61,6 +51,10 @@ public class Menu {
 
         Scanner scanner = new Scanner(System.in);
         int selection = scanner.nextInt();
+
+        if(selection == 0){
+            return "Cancelling checkout.";
+        }
 
         boolean result = bookStorage.checkoutBook(selection);
 
@@ -74,6 +68,32 @@ public class Menu {
         return response;
     }
 
+    private String returnBook()
+    {
+        String response = "";
+
+        System.out.println("Please enter book number to return or 0 to cancel: ");
+
+        Scanner scanner = new Scanner(System.in);
+        int selection = scanner.nextInt();
+
+        if(selection == 0){
+            return "Cancelling return.";
+        }
+
+        boolean result = bookStorage.returnBook(selection);
+
+        if(!result){
+            response = "That is not a valid book to return.";
+        }
+        else {
+            response = "Thank you for returning the book";
+        }
+
+        return response;
+    }
+
+
     public String actOnSelection(int selection)
     {
         String response;
@@ -82,10 +102,13 @@ public class Menu {
                 response = bookStorage.printAvailableBooks();
                 break;
             case 2:
-                response = waitForCheckout();
+                response = checkoutBook();
                 break;
             case 3:
                 response = bookStorage.printCheckedOutBooks();
+                break;
+            case 4:
+                response = returnBook();
                 break;
             case 0:
                 setApplicationRunning(false);
