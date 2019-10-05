@@ -43,7 +43,6 @@ public class MenuTest {
         dummyBooks.addBook(new Book(2,"Test1", "Matt1", 2019, true));
         testMenu.setBooks(dummyBooks);
 
-        int printBookSelection = 1;
         assertThat(testMenu.actOnSelection(PRINT_ALL_SELECTION), is("1 | Test | Matt | 2019"));
     }
 
