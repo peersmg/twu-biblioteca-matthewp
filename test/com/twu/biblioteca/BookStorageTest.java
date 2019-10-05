@@ -24,6 +24,18 @@ public class BookStorageTest {
     }
 
     @Test
+    public void canPrintAvailableBooks()
+    {
+        BookStorage bookStorage = new BookStorage();
+        List<Book> bookList = new ArrayList<Book>();
+        bookList.add(new Book(1,"Test", "Matt", 2019, false));
+        bookList.add(new Book(2,"Test1", "Matt1", 2019, false));
+
+        assertThat(bookStorage.printAvailableBooks().get(0), is(bookList.get(0).formattedBookInfo()));
+    }
+
+
+    @Test
     public void canAddCheckedBooks(){
         BookStorage bookStorage = new BookStorage();
         List<Book> bookList = new ArrayList<Book>();
