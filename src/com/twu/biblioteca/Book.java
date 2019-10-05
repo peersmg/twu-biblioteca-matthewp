@@ -29,7 +29,7 @@ public class Book {
     }
 
     public String formattedBookInfo() {
-        return id + " | "+title +" | "+ author +" | "+ yearPublished;
+        return String.format("%d | %s | %s | %d", id , title, author, yearPublished);
     }
 
     public void checkOut()
