@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 
 public class MenuTest {
@@ -44,6 +45,7 @@ public class MenuTest {
         testMenu.setBooks(dummyBooks);
 
         assertThat(testMenu.actOnSelection(PRINT_ALL_SELECTION), is("1 | Test | Matt | 2019"));
+        assertThat(testMenu.actOnSelection(PRINT_ALL_SELECTION), is(not("1 | Test1 | Matt1 | 2019")));
     }
 
     @Test
