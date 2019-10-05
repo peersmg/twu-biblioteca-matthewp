@@ -9,7 +9,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class MenuTests {
+public class MenuTest {
     private Menu testMenu;
 
     @Before
