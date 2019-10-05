@@ -16,11 +16,20 @@ public class IOHandler {
 
     public int requestInt(String message) {
 
-        return scanner.nextInt();
+        output.println(message);
+        String input = scanner.next();
+
+        try {
+            return Integer.parseInt(input);
+        }
+        catch (NumberFormatException nfe)
+        {
+            return -1;
+        }
     }
 
     public void printMessage(String message)
     {
-
+        output.println(message);
     }
 }
