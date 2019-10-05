@@ -70,14 +70,7 @@ public class Menu {
 
         boolean result = bookStorage.returnBook(selection);
 
-        if(!result){
-            response = "That is not a valid book to return.";
-        }
-        else {
-            response = "Thank you for returning the book";
-        }
-
-        return response;
+        return result ? "Thank you for returning the book" : "That is not a valid book to return.";
     }
 
 
