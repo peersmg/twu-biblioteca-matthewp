@@ -1,14 +1,12 @@
 package com.twu.biblioteca;
 
-import java.util.Scanner;
-
 public class Menu {
-    BookStorage bookStorage;
+    ItemStorage itemStorage;
     boolean applicationRunning = true;
     IOHandler inputOutput;
 
-    public Menu(BookStorage bookStorage, IOHandler inputOutput) {
-        this.bookStorage = bookStorage;
+    public Menu(ItemStorage itemStorage, IOHandler inputOutput) {
+        this.itemStorage = itemStorage;
         this.inputOutput = inputOutput;
         welcomeMessage();
     }
@@ -19,8 +17,8 @@ public class Menu {
         }
     }
 
-    public void setBooks(BookStorage bookStorage) {
-        this.bookStorage = bookStorage;
+    public void setBooks(ItemStorage itemStorage) {
+        this.itemStorage = itemStorage;
     }
 
     public void setApplicationRunning(boolean applicationRunning) {
@@ -46,7 +44,7 @@ public class Menu {
             return "Cancelling checkout.";
         }
 
-        boolean result = bookStorage.checkoutBook(selection);
+        boolean result = itemStorage.checkoutItem(selection);
 
         if(!result){
             response = "Sorry, that book is not available. Please enter a valid book ID!";
@@ -68,7 +66,7 @@ public class Menu {
             return "Cancelling return.";
         }
 
-        boolean result = bookStorage.returnBook(selection);
+        boolean result = itemStorage.returnItem(selection);
 
         return result ? "Thank you for returning the book" : "That is not a valid book to return.";
     }
@@ -79,13 +77,13 @@ public class Menu {
         String response;
         switch (selection){
             case 1:
-                response = String.join("\n",bookStorage.printAvailableBooks());
+                response = String.join("\n", itemStorage.printAvailableItems());
                 break;
             case 2:
                 response = checkoutBook();
                 break;
             case 3:
-                response = bookStorage.printCheckedOutBooks();
+                response = itemStorage.printCheckedOutItems();
                 break;
             case 4:
                 response = returnBook();

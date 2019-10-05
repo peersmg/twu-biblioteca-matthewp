@@ -5,10 +5,6 @@ import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -21,7 +17,7 @@ public class MenuTest {
 
     @Before
     public void init(){
-        BookStorage dummyBooks = new BookStorage();
+        ItemStorage dummyBooks = new ItemStorage();
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         testMenu = new Menu(dummyBooks, new IOHandler(new ByteArrayInputStream("3".getBytes()), output));
     }
@@ -29,9 +25,9 @@ public class MenuTest {
     @Test
     public void optionOneReturnsBookList()
     {
-        BookStorage dummyBooks = new BookStorage();
-        dummyBooks.addBook(new Book(1,"Test", "Matt", 2019, false));
-        dummyBooks.addBook(new Book(2,"Test1", "Matt1", 2019, false));
+        ItemStorage dummyBooks = new ItemStorage();
+        dummyBooks.addItem(new Book(1,"Test", "Matt", 2019, false));
+        dummyBooks.addItem(new Book(2,"Test1", "Matt1", 2019, false));
         testMenu.setBooks(dummyBooks);
 
         assertThat(testMenu.actOnSelection(PRINT_ALL_SELECTION), is("1 | Test | Matt | 2019\n2 | Test1 | Matt1 | 2019"));
@@ -39,9 +35,9 @@ public class MenuTest {
 
     @Test
     public void checkedOutBookNotInAvailableList(){
-        BookStorage dummyBooks = new BookStorage();
-        dummyBooks.addBook(new Book(1,"Test", "Matt", 2019, false));
-        dummyBooks.addBook(new Book(2,"Test1", "Matt1", 2019, true));
+        ItemStorage dummyBooks = new ItemStorage();
+        dummyBooks.addItem(new Book(1,"Test", "Matt", 2019, false));
+        dummyBooks.addItem(new Book(2,"Test1", "Matt1", 2019, true));
         testMenu.setBooks(dummyBooks);
 
         assertThat(testMenu.actOnSelection(PRINT_ALL_SELECTION), is("1 | Test | Matt | 2019"));
@@ -50,9 +46,9 @@ public class MenuTest {
 
     @Test
     public void checkedOutBookInNotAvailableList(){
-        BookStorage dummyBooks = new BookStorage();
-        dummyBooks.addBook(new Book(1,"Test", "Matt", 2019, false));
-        dummyBooks.addBook(new Book(2,"Test1", "Matt1", 2019, true));
+        ItemStorage dummyBooks = new ItemStorage();
+        dummyBooks.addItem(new Book(1,"Test", "Matt", 2019, false));
+        dummyBooks.addItem(new Book(2,"Test1", "Matt1", 2019, true));
         testMenu.setBooks(dummyBooks);
 
         assertThat(testMenu.actOnSelection(PRINT_CHECKED_OUT_SELECTION), is("2 | Test1 | Matt1 | 2019\n"));
