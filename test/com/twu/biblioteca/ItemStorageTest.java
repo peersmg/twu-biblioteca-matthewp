@@ -24,6 +24,19 @@ public class ItemStorageTest {
     }
 
     @Test
+    public void canAddAvailableMovies() {
+        ItemStorage itemStorage = new ItemStorage();
+        List<Movie> movieList = new ArrayList<>();
+        movieList.add(new Movie(1,"Test", 2019, "Matt", 5,false));
+        movieList.add(new Movie(2,"Test1", 2019, "Matt", 5,false));
+
+        itemStorage.addItem(movieList.get(0));
+        itemStorage.addItem(movieList.get(1));
+
+        assertThat(itemStorage.getAvailableItems(),is(movieList));
+    }
+
+    @Test
     public void canPrintAvailableBooks()
     {
         ItemStorage itemStorage = new ItemStorage();
@@ -34,6 +47,19 @@ public class ItemStorageTest {
         itemStorage.addItem(bookList.get(1));
 
         assertThat(itemStorage.printAvailableItems().get(0), is(bookList.get(0).getDetails()));
+    }
+
+    @Test
+    public void canPrintAvailableMovies()
+    {
+        ItemStorage itemStorage = new ItemStorage();
+        List<Movie> movieList = new ArrayList<Movie>();
+        movieList.add(new Movie(1,"Test", 2019, "Matt", 5,false));
+        movieList.add(new Movie(2,"Test", 2019, "Matt", 5,false));
+        itemStorage.addItem(movieList.get(0));
+        itemStorage.addItem(movieList.get(1));
+
+        assertThat(itemStorage.printAvailableItems().get(0), is(movieList.get(0).getDetails()));
     }
 
 
