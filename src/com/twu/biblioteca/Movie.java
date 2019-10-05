@@ -18,6 +18,6 @@ public class Movie extends Item {
     @Override
     public String getDetails()
     {
-        return "";
+        return String.format("%d | %s | %s | %d | %d", id , name, director, year, rating);
     }
 }

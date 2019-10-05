@@ -27,7 +27,7 @@ public class Menu {
 
     private void getUserSelection(){
 
-        inputOutput.printMessage("Options: Exit Application [0] | Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]");
+        inputOutput.printMessage("Options: Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]");
 
         int selection = inputOutput.requestInt("Please enter selection: ");
 
