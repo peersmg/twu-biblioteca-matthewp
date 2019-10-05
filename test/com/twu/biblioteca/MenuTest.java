@@ -19,8 +19,9 @@ public class MenuTest {
     @Before
     public void init(){
         ItemStorage dummyBooks = new ItemStorage();
+        ItemStorage dummyMovies = new ItemStorage();
         ByteArrayOutputStream output = new ByteArrayOutputStream();
-        testMenu = new Menu(dummyBooks, new IOHandler(new ByteArrayInputStream("3".getBytes()), output));
+        testMenu = new Menu(dummyBooks, dummyMovies, new IOHandler(new ByteArrayInputStream("3".getBytes()), output));
     }
 
     @Test
@@ -39,7 +40,7 @@ public class MenuTest {
     {
         ItemStorage dummyMovies = new ItemStorage();
         dummyMovies.addItem(new Movie(1,"Test", 2019, "Matt", 5,false));
-        dummyMovies.addItem(new Movie(2,"Test1", 2019, "Matt", 8,false));
+        dummyMovies.addItem(new Movie(2,"Test1", 2019, "Matt1", 8,false));
         testMenu.setMovies(dummyMovies);
 
         assertThat(testMenu.actOnSelection(PRINT_ALL_MOVIES_SELECTION), is("1 | Test | Matt | 2019 | 5\n2 | Test1 | Matt1 | 2019 | 8"));
@@ -58,10 +59,10 @@ public class MenuTest {
 
     @Test
     public void checkedOutMovieNotInAvailableList(){
-        ItemStorage dummyMovie = new ItemStorage();
+        ItemStorage dummyMovies = new ItemStorage();
         dummyMovies.addItem(new Movie(1,"Test", 2019, "Matt", 5,false));
         dummyMovies.addItem(new Movie(2,"Test1", 2019, "Matt", 8,true));
-        testMenu.setMovies(dummyMovie);
+        testMenu.setMovies(dummyMovies);
 
         assertThat(testMenu.actOnSelection(PRINT_ALL_MOVIES_SELECTION), is("1 | Test | Matt | 2019 | 5"));
         assertThat(testMenu.actOnSelection(PRINT_ALL_MOVIES_SELECTION), is(not("1 | Test1 | Matt1 | 2019 | 8")));

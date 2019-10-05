@@ -9,9 +9,14 @@ public class BibliotecaApp {
         bookStorage.addItem(new Book(142,"Game Of Thrones", "JRR", 2014, false));
         bookStorage.addItem(new Book(434,"The Shining", "SK", 1977, false));
 
+        ItemStorage movieStorage = new ItemStorage();
+        movieStorage.addItem(new Movie(242, "Joker", 2019, "Matthew", 7, false));
+        movieStorage.addItem(new Movie(825, "Batman", 2013, "James", 8, false));
+        movieStorage.addItem(new Movie(111, "Avengers", 2015, "Edd", 9, false));
+
         IOHandler inputOutput = new IOHandler(System.in, System.out);
 
-        Menu menu = new Menu(bookStorage, inputOutput);
+        Menu menu = new Menu(bookStorage, movieStorage, inputOutput);
         menu.runInputListener();
     }
 }

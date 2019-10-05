@@ -1,12 +1,14 @@
 package com.twu.biblioteca;
 
 public class Menu {
-    ItemStorage itemStorage;
+    ItemStorage bookStorage;
+    ItemStorage movieStorage;
     boolean applicationRunning = true;
     IOHandler inputOutput;
 
-    public Menu(ItemStorage itemStorage, IOHandler inputOutput) {
-        this.itemStorage = itemStorage;
+    public Menu(ItemStorage bookStorage, ItemStorage movieStorage, IOHandler inputOutput) {
+        this.bookStorage = bookStorage;
+        this.movieStorage = movieStorage;
         this.inputOutput = inputOutput;
         welcomeMessage();
     }
@@ -18,7 +20,11 @@ public class Menu {
     }
 
     public void setBooks(ItemStorage itemStorage) {
-        this.itemStorage = itemStorage;
+        this.bookStorage = itemStorage;
+    }
+
+    public void setMovies(ItemStorage movieStorage) {
+        this.movieStorage = movieStorage;
     }
 
     public void setApplicationRunning(boolean applicationRunning) {
@@ -27,7 +33,8 @@ public class Menu {
 
     private void getUserSelection(){
 
-        inputOutput.printMessage("Options: Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]");
+        inputOutput.printMessage("Options: Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]\n" +
+                "Show Available Movies [5] | Exit Application [0]");
 
         int selection = inputOutput.requestInt("Please enter selection: ");
 
@@ -44,7 +51,7 @@ public class Menu {
             return "Cancelling checkout.";
         }
 
-        boolean result = itemStorage.checkoutItem(selection);
+        boolean result = bookStorage.checkoutItem(selection);
 
         if(!result){
             response = "Sorry, that book is not available. Please enter a valid book ID!";
@@ -66,7 +73,7 @@ public class Menu {
             return "Cancelling return.";
         }
 
-        boolean result = itemStorage.returnItem(selection);
+        boolean result = bookStorage.returnItem(selection);
 
         return result ? "Thank you for returning the book" : "That is not a valid book to return.";
     }
@@ -77,16 +84,19 @@ public class Menu {
         String response;
         switch (selection){
             case 1:
-                response = String.join("\n", itemStorage.printAvailableItems());
+                response = String.join("\n", bookStorage.printAvailableItems());
                 break;
             case 2:
                 response = checkoutBook();
                 break;
             case 3:
-                response = itemStorage.printCheckedOutItems();
+                response = bookStorage.printCheckedOutItems();
                 break;
             case 4:
                 response = returnBook();
+                break;
+            case 5:
+                response = String.join("\n", movieStorage.printAvailableItems());
                 break;
             case 0:
                 setApplicationRunning(false);
