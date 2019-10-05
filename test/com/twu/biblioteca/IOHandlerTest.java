@@ -28,6 +28,20 @@ public class IOHandlerTest {
     }
 
     @Test
+    public void intRequestFailsWithString()
+    {
+        // Given
+        StringWriter output = new StringWriter();
+        IOHandler inputOutput = new IOHandler(new Scanner("Invalid Text"), new PrintWriter(output));
+
+        // When
+        int response = inputOutput.requestInt("Test message");
+
+        // Then
+        assertThat(response, is(-1));
+    }
+
+    @Test
     public void canPrintMessage()
     {
         // Given

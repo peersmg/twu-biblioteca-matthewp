@@ -10,12 +10,13 @@ public class IOHandler {
     PrintWriter output;
 
     public IOHandler(Scanner scanner, PrintWriter output) {
-
+        this.scanner = scanner;
+        this.output = output;
     }
 
     public int requestInt(String message) {
 
-        return 0;
+        return scanner.nextInt();
     }
 
     public void printMessage(String message)
