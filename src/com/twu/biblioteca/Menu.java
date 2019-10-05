@@ -6,10 +6,12 @@ public class Menu {
     BookStorage bookStorage;
     boolean applicationRunning = true;
     Scanner inputScanner;
+    IOHandler inputOutput;
 
-    public Menu(BookStorage bookStorage) {
+    public Menu(BookStorage bookStorage, IOHandler inputOutput) {
         this.bookStorage = bookStorage;
         this.inputScanner = new Scanner(System.in);
+        this.inputOutput = inputOutput;
         welcomeMessage();
     }
 
@@ -30,34 +32,17 @@ public class Menu {
     private void getUserSelection(){
 
         System.out.println("Options: Exit Application [0] | Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]");
-        System.out.println("Please enter selection: ");
 
-        int selection = readNextInt();
+        int selection = inputOutput.requestInt("Please enter selection: ");
 
-        System.out.println(actOnSelection(selection));
-    }
-
-    private int readNextInt()
-    {
-        String input = inputScanner.next();
-
-        try {
-            return Integer.parseInt(input);
-        }
-        catch (NumberFormatException nfe)
-        {
-            return -1;
-        }
-
+        inputOutput.printMessage(actOnSelection(selection));
     }
 
     private String checkoutBook()
     {
         String response;
 
-        System.out.println("Please enter book ID to checkout or 0 to cancel: ");
-
-        int selection = readNextInt();
+        int selection = inputOutput.requestInt("Please enter book ID to checkout or 0 to cancel: ");
 
         if(selection == 0){
             return "Cancelling checkout.";
@@ -79,9 +64,7 @@ public class Menu {
     {
         String response;
 
-        System.out.println("Please enter book ID to return or 0 to cancel: ");
-
-        int selection = readNextInt();
+        int selection = inputOutput.requestInt("Please enter book ID to return or 0 to cancel: ");
 
         if(selection == 0){
             return "Cancelling return.";
@@ -129,6 +112,6 @@ public class Menu {
     }
 
     private void welcomeMessage(){
-        System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
+        inputOutput.printMessage("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
     }
 }

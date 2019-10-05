@@ -3,8 +3,10 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -15,7 +17,7 @@ public class MenuTest {
     @Before
     public void init(){
         BookStorage dummyBooks = new BookStorage();
-        testMenu = new Menu(dummyBooks);
+        testMenu = new Menu(dummyBooks, new IOHandler(new Scanner(System.in), new PrintWriter(System.out)));
     }
 
     @Test

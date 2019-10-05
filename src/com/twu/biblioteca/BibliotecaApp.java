@@ -14,7 +14,7 @@ public class BibliotecaApp {
 
         IOHandler inputOutput = new IOHandler(new Scanner(System.in), new PrintWriter(System.out));
 
-        Menu menu = new Menu(bookStorage);
+        Menu menu = new Menu(bookStorage, inputOutput);
         menu.runInputListener();
     }
 }
