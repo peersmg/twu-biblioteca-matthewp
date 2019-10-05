@@ -5,12 +5,10 @@ import java.util.Scanner;
 public class Menu {
     BookStorage bookStorage;
     boolean applicationRunning = true;
-    Scanner inputScanner;
     IOHandler inputOutput;
 
     public Menu(BookStorage bookStorage, IOHandler inputOutput) {
         this.bookStorage = bookStorage;
-        this.inputScanner = new Scanner(System.in);
         this.inputOutput = inputOutput;
         welcomeMessage();
     }
@@ -31,7 +29,7 @@ public class Menu {
 
     private void getUserSelection(){
 
-        System.out.println("Options: Exit Application [0] | Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]");
+        inputOutput.printMessage("Options: Exit Application [0] | Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]");
 
         int selection = inputOutput.requestInt("Please enter selection: ");
 

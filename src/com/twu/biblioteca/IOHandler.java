@@ -1,22 +1,25 @@
 package com.twu.biblioteca;
 
 
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class IOHandler {
 
-    Scanner scanner;
-    PrintWriter output;
+    public IOHandler(InputStream scannerStream, OutputStream outputStream) {
 
-    public IOHandler(Scanner scanner, PrintWriter output) {
-        this.scanner = scanner;
-        this.output = output;
+        System.setOut(new PrintStream(outputStream));
+        System.setIn(scannerStream);
     }
 
     public int requestInt(String message) {
+        Scanner scanner = new Scanner(System.in);
 
-        output.println(message);
+        System.out.println(message);
+
         String input = scanner.next();
 
         try {
@@ -30,6 +33,6 @@ public class IOHandler {
 
     public void printMessage(String message)
     {
-        output.println(message);
+        System.out.println(message);
     }
 }

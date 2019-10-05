@@ -12,7 +12,7 @@ public class BibliotecaApp {
         bookStorage.addBook(new Book(142,"Game Of Thrones", "JRR", 2014, false));
         bookStorage.addBook(new Book(434,"The Shining", "SK", 1977, false));
 
-        IOHandler inputOutput = new IOHandler(new Scanner(System.in), new PrintWriter(System.out));
+        IOHandler inputOutput = new IOHandler(System.in, System.out);
 
         Menu menu = new Menu(bookStorage, inputOutput);
         menu.runInputListener();

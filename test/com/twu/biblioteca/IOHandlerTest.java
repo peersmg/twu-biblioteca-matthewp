@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Scanner;
@@ -17,8 +19,8 @@ public class IOHandlerTest {
     public void canRequestInteger()
     {
         // Given
-        StringWriter output = new StringWriter();
-        IOHandler inputOutput = new IOHandler(new Scanner("3"), new PrintWriter(output));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        IOHandler inputOutput = new IOHandler(new ByteArrayInputStream("3".getBytes()), output);
 
         // When
         int response = inputOutput.requestInt("Test message");
@@ -31,8 +33,8 @@ public class IOHandlerTest {
     public void intRequestFailsWithString()
     {
         // Given
-        StringWriter output = new StringWriter();
-        IOHandler inputOutput = new IOHandler(new Scanner("Invalid Text"), new PrintWriter(output));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        IOHandler inputOutput = new IOHandler(new ByteArrayInputStream("Invalid Text".getBytes()), output);
 
         // When
         int response = inputOutput.requestInt("Test message");
@@ -45,8 +47,8 @@ public class IOHandlerTest {
     public void canPrintMessage()
     {
         // Given
-        StringWriter output = new StringWriter();
-        IOHandler inputOutput = new IOHandler(new Scanner(""), new PrintWriter(output));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        IOHandler inputOutput = new IOHandler(new ByteArrayInputStream("".getBytes()), output);
 
         // When
         inputOutput.printMessage("ShouldPrint");

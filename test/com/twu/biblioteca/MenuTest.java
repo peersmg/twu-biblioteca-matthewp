@@ -3,6 +3,8 @@ package com.twu.biblioteca;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,8 @@ public class MenuTest {
     @Before
     public void init(){
         BookStorage dummyBooks = new BookStorage();
-        testMenu = new Menu(dummyBooks, new IOHandler(new Scanner(System.in), new PrintWriter(System.out)));
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        testMenu = new Menu(dummyBooks, new IOHandler(new ByteArrayInputStream("3".getBytes()), output));
     }
 
     @Test
