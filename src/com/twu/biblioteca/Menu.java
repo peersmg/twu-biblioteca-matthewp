@@ -86,7 +86,7 @@ public class Menu {
         String response;
         switch (selection){
             case 1:
-                response = bookStorage.printAvailableBooks();
+                response = String.join("\n",bookStorage.printAvailableBooks());
                 break;
             case 2:
                 response = checkoutBook();

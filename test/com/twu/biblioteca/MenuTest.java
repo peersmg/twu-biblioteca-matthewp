@@ -33,7 +33,7 @@ public class MenuTest {
         dummyBooks.addBook(new Book(2,"Test1", "Matt1", 2019, false));
         testMenu.setBooks(dummyBooks);
 
-        assertThat(testMenu.actOnSelection(PRINT_ALL_SELECTION), is("1 | Test | Matt | 2019\n2 | Test1 | Matt1 | 2019\n"));
+        assertThat(testMenu.actOnSelection(PRINT_ALL_SELECTION), is("1 | Test | Matt | 2019\n2 | Test1 | Matt1 | 2019"));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class MenuTest {
         testMenu.setBooks(dummyBooks);
 
         int printBookSelection = 1;
-        assertThat(testMenu.actOnSelection(PRINT_ALL_SELECTION), is("1 | Test | Matt | 2019\n"));
+        assertThat(testMenu.actOnSelection(PRINT_ALL_SELECTION), is("1 | Test | Matt | 2019"));
     }
 
     @Test

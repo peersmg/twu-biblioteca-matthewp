@@ -30,6 +30,8 @@ public class BookStorageTest {
         List<Book> bookList = new ArrayList<Book>();
         bookList.add(new Book(1,"Test", "Matt", 2019, false));
         bookList.add(new Book(2,"Test1", "Matt1", 2019, false));
+        bookStorage.addBook(bookList.get(0));
+        bookStorage.addBook(bookList.get(1));
 
         assertThat(bookStorage.printAvailableBooks().get(0), is(bookList.get(0).formattedBookInfo()));
     }

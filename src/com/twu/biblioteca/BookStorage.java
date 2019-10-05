@@ -30,11 +30,11 @@ public class BookStorage {
         return new ArrayList<Book>(checkedOutBooks.values());
     }
 
-    public String printAvailableBooks()
+    public List<String> printAvailableBooks()
     {
-        String bookList = "";
+        List<String> bookList = new ArrayList<String>();
         for (Book book: availableBooks.values()){
-            bookList += book.formattedBookInfo() + "\n";
+            bookList.add(book.formattedBookInfo());
         }
         return bookList;
     }
