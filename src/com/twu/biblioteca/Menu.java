@@ -34,30 +34,30 @@ public class Menu {
     private void getUserSelection(){
 
         inputOutput.printMessage("Options: Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]\n" +
-                "Show Available Movies [5] | Exit Application [0]");
+                "Show Available Movies [5] | Checkout Movie [6] | Exit Application [0]");
 
         int selection = inputOutput.requestInt("Please enter selection: ");
 
         inputOutput.printMessage(actOnSelection(selection));
     }
 
-    private String checkoutBook()
+    public String checkoutItem(ItemStorage itemStore, String itemType)
     {
         String response;
 
-        int selection = inputOutput.requestInt("Please enter book ID to checkout or 0 to cancel: ");
+        int selection = inputOutput.requestInt("Please enter "+itemType+" ID to checkout or 0 to cancel: ");
 
         if(selection == 0){
             return "Cancelling checkout.";
         }
 
-        boolean result = bookStorage.checkoutItem(selection);
+        boolean result = itemStore.checkoutItem(selection);
 
         if(!result){
-            response = "Sorry, that book is not available. Please enter a valid book ID!";
+            response = "Sorry, that "+itemType+" is not available. Please enter a valid book ID!";
         }
         else {
-            response = "Thank you! Enjoy the book";
+            response = "Thank you! Enjoy the "+itemType;
         }
 
         return response;
@@ -87,7 +87,7 @@ public class Menu {
                 response = String.join("\n", bookStorage.printAvailableItems());
                 break;
             case 2:
-                response = checkoutBook();
+                response = checkoutItem(bookStorage, "book");
                 break;
             case 3:
                 response = bookStorage.printCheckedOutItems();
@@ -97,6 +97,9 @@ public class Menu {
                 break;
             case 5:
                 response = String.join("\n", movieStorage.printAvailableItems());
+                break;
+            case 6:
+                response = checkoutItem(movieStorage, "movie");
                 break;
             case 0:
                 setApplicationRunning(false);
