@@ -10,9 +10,9 @@ public class MovieTest {
     private Movie testingMovie;
 
     @Before
-    void setup()
+    public void setup()
     {
-        testingMovie = new Movie(1,"Joker", "Matt", 2018, 8, false);
+        testingMovie = new Movie(1,"Joker", 2018, "Matt", 8, false);
     }
 
     @Test
