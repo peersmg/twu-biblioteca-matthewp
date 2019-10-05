@@ -28,7 +28,7 @@ public class Book {
         return checkedOut;
     }
 
-    public String formattedBookInfo() {
+    public String bookDetails() {
         return String.format("%d | %s | %s | %d", id , title, author, yearPublished);
     }
 

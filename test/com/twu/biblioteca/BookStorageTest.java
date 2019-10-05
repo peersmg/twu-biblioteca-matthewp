@@ -33,7 +33,7 @@ public class BookStorageTest {
         bookStorage.addBook(bookList.get(0));
         bookStorage.addBook(bookList.get(1));
 
-        assertThat(bookStorage.printAvailableBooks().get(0), is(bookList.get(0).formattedBookInfo()));
+        assertThat(bookStorage.printAvailableBooks().get(0), is(bookList.get(0).bookDetails()));
     }
 
 

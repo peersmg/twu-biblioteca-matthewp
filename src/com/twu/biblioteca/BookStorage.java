@@ -34,7 +34,7 @@ public class BookStorage {
     {
         List<String> bookList = new ArrayList<String>();
         for (Book book: availableBooks.values()){
-            bookList.add(book.formattedBookInfo());
+            bookList.add(book.bookDetails());
         }
         return bookList;
     }
@@ -43,7 +43,7 @@ public class BookStorage {
     {
         String bookList = "";
         for (Book book: checkedOutBooks.values()){
-            bookList += book.formattedBookInfo() + "\n";
+            bookList += book.bookDetails() + "\n";
         }
         return bookList;
     }
