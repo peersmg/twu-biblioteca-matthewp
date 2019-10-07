@@ -14,9 +14,13 @@ public class BibliotecaApp {
         movieStorage.addItem(new Movie(825, "Batman", 2013, "James", 8, false));
         movieStorage.addItem(new Movie(111, "Avengers", 2015, "Edd", 9, false));
 
+        UserRegister userRegister = new UserRegister();
+        userRegister.addUser(new User("123-1234", "myPass"));
+        userRegister.addUser(new User("111-1111", "password"));
+
         IOHandler inputOutput = new IOHandler(System.in, System.out);
 
-        Menu menu = new Menu(bookStorage, movieStorage, inputOutput);
+        Menu menu = new Menu(bookStorage, movieStorage, inputOutput, userRegister);
         menu.runInputListener();
     }
 }

@@ -1,15 +1,17 @@
 package com.twu.biblioteca;
 
 public class Menu {
-    ItemStorage bookStorage;
-    ItemStorage movieStorage;
-    boolean applicationRunning = true;
-    IOHandler inputOutput;
+    private ItemStorage bookStorage;
+    private ItemStorage movieStorage;
+    private boolean applicationRunning = true;
+    private IOHandler inputOutput;
+    private UserRegister userRegister;
 
-    public Menu(ItemStorage bookStorage, ItemStorage movieStorage, IOHandler inputOutput) {
+    public Menu(ItemStorage bookStorage, ItemStorage movieStorage, IOHandler inputOutput, UserRegister userRegister) {
         this.bookStorage = bookStorage;
         this.movieStorage = movieStorage;
         this.inputOutput = inputOutput;
+        this.userRegister = userRegister;
         welcomeMessage();
     }
 
