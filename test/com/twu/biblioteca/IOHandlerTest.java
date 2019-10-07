@@ -30,6 +30,20 @@ public class IOHandlerTest {
     }
 
     @Test
+    public void canRequestString()
+    {
+        // Given
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        IOHandler inputOutput = new IOHandler(new ByteArrayInputStream("hello".getBytes()), output);
+
+        // When
+        int response = inputOutput.requestString("Test message");
+
+        // Then
+        assertThat(response, is("hello"));
+    }
+
+    @Test
     public void intRequestFailsWithString()
     {
         // Given

@@ -126,7 +126,7 @@ public class Menu {
             currentUser = null;
             return "You are now logged out.";
         }
-
+        return "";
     }
 
     private void welcomeMessage(){
