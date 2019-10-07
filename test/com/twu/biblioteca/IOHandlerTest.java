@@ -37,7 +37,7 @@ public class IOHandlerTest {
         IOHandler inputOutput = new IOHandler(new ByteArrayInputStream("hello".getBytes()), output);
 
         // When
-        int response = inputOutput.requestString("Test message");
+        String response = inputOutput.requestString("Test message");
 
         // Then
         assertThat(response, is("hello"));

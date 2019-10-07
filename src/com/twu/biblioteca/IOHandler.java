@@ -31,6 +31,14 @@ public class IOHandler {
         }
     }
 
+    public String requestString(String message) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(message);
+
+        return scanner.next();
+    }
+
     public void printMessage(String message)
     {
         System.out.println(message);
