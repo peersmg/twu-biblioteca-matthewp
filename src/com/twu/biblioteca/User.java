@@ -12,4 +12,12 @@ public class User {
     public boolean validate(String password){
         return password == this.password;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
