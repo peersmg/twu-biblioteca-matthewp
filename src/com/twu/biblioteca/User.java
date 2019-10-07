@@ -10,7 +10,7 @@ public class User {
     }
 
     public boolean validate(String password){
-        return password == this.password;
+        return password.equals(this.password);
     }
 
     public String getId() {

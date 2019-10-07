@@ -69,8 +69,6 @@ public class Menu {
 
     private String returnBook()
     {
-        String response;
-
         int selection = inputOutput.requestInt("Please enter book ID to return or 0 to cancel: ");
 
         if(selection == 0){
@@ -107,6 +105,7 @@ public class Menu {
                 break;
             case 7:
                 response = logIn();
+                break;
             case 0:
                 setApplicationRunning(false);
                 response = "Exiting application...";
@@ -121,12 +120,20 @@ public class Menu {
 
     private String logIn()
     {
-        if(currentUser != null)
+        String userId = inputOutput.requestString("Please enter user ID: ").trim();
+        String password = inputOutput.requestString("Please enter password: ").trim();
+
+        User result = userRegister.getUser(userId, password);
+
+        if(result == null)
         {
-            currentUser = null;
-            return "You are now logged out.";
+            return "Invalid user id / password.";
         }
-        return "";
+        else
+        {
+            this.currentUser = result;
+            return "You are now logged in.";
+        }
     }
 
     private void welcomeMessage(){

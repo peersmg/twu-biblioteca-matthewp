@@ -26,7 +26,7 @@ public class UserRegister {
         if(userExists(userId))
         {
             User user = registeredUsers.get(userId);
-            if(user.getPassword() == userPassword)
+            if(user.validate(userPassword))
             {
                 return user;
             }
