@@ -20,8 +20,9 @@ public class MenuTest {
     public void init(){
         ItemStorage dummyBooks = new ItemStorage();
         ItemStorage dummyMovies = new ItemStorage();
+        UserRegister dummyUsers = new UserRegister();
         ByteArrayOutputStream output = new ByteArrayOutputStream();
-        testMenu = new Menu(dummyBooks, dummyMovies, new IOHandler(new ByteArrayInputStream("3".getBytes()), output));
+        testMenu = new Menu(dummyBooks, dummyMovies, new IOHandler(new ByteArrayInputStream("3".getBytes()), output),dummyUsers);
     }
 
     @Test

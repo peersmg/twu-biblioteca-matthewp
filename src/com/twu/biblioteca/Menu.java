@@ -6,12 +6,14 @@ public class Menu {
     private boolean applicationRunning = true;
     private IOHandler inputOutput;
     private UserRegister userRegister;
+    private User currentUser;
 
     public Menu(ItemStorage bookStorage, ItemStorage movieStorage, IOHandler inputOutput, UserRegister userRegister) {
         this.bookStorage = bookStorage;
         this.movieStorage = movieStorage;
         this.inputOutput = inputOutput;
         this.userRegister = userRegister;
+        currentUser = null;
         welcomeMessage();
     }
 
@@ -36,7 +38,7 @@ public class Menu {
     private void getUserSelection(){
 
         inputOutput.printMessage("Options: Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]\n" +
-                "Show Available Movies [5] | Checkout Movie [6] | Exit Application [0]");
+                "Show Available Movies [5] | Checkout Movie [6] | Log In/Out [7] | Exit Application [0]");
 
         int selection = inputOutput.requestInt("Please enter selection: ");
 
@@ -103,6 +105,8 @@ public class Menu {
             case 6:
                 response = checkoutItem(movieStorage, "movie");
                 break;
+            case 7:
+                response = logIn();
             case 0:
                 setApplicationRunning(false);
                 response = "Exiting application...";
@@ -113,6 +117,16 @@ public class Menu {
         }
 
         return response;
+    }
+
+    private String logIn()
+    {
+        if(currentUser != null)
+        {
+            currentUser = null;
+            return "You are now logged out.";
+        }
+
     }
 
     private void welcomeMessage(){
