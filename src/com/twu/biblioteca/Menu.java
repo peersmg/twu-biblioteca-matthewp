@@ -49,6 +49,11 @@ public class Menu {
     {
         String response;
 
+        if(currentUser == null)
+        {
+            return "Must be logged in to checkout items.";
+        }
+
         int selection = inputOutput.requestInt("Please enter "+itemType+" ID to checkout or 0 to cancel: ");
 
         if(selection == 0){
@@ -69,6 +74,11 @@ public class Menu {
 
     private String returnBook()
     {
+        if(currentUser == null)
+        {
+            return "Must be logged in to return items.";
+        }
+
         int selection = inputOutput.requestInt("Please enter book ID to return or 0 to cancel: ");
 
         if(selection == 0){
