@@ -16,6 +16,6 @@ public class UserTest {
         boolean loginFails = testUser.validate("wrong-password");
 
         assertThat(loginSuccess, is(true));
-        assertThat(loginFails, is(true));
+        assertThat(loginFails, is(false));
     }
 }
