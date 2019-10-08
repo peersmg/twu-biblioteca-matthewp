@@ -15,8 +15,8 @@ public class BibliotecaApp {
         movieStorage.addItem(new Movie(111, "Avengers", 2015, "Edd", 9, false));
 
         UserRegister userRegister = new UserRegister();
-        userRegister.addUser(new User("123-1234", "myPass"));
-        userRegister.addUser(new User("111-1111", "password"));
+        userRegister.addUser(new User("123-1234", "myPass", "Matt", "matt@email.com", "07834233922"));
+        userRegister.addUser(new User("111-1111", "password", "James", "james@email.com", "07832633922"));
 
         IOHandler inputOutput = new IOHandler(System.in, System.out);
 

@@ -39,6 +39,6 @@ public class UserTest {
     @Test
     public void canGetUserPhoneNumber()
     {
-        assertThat("07965330222", containsString(testUser.getPhoneNumber));
+        assertThat("07965330222", containsString(testUser.getPhoneNumber()));
     }
 }

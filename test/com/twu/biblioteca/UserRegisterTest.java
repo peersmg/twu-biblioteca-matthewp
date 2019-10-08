@@ -11,7 +11,7 @@ public class UserRegisterTest {
     {
         UserRegister userRegister = new UserRegister();
 
-        User newUser = new User("111-1111", "password");
+        User newUser = new User("111-1111", "password", "Matt", "matt@email.com", "07834233922");
         userRegister.addUser(newUser);
 
         boolean userExists = userRegister.userExists("111-1111");
@@ -24,7 +24,7 @@ public class UserRegisterTest {
     {
         UserRegister userRegister = new UserRegister();
 
-        User newUser = new User("111-1111", "password");
+        User newUser = new User("111-1111", "password", "Matt", "matt@email.com", "07834233922");
         userRegister.addUser(newUser);
 
         User loggedUser = userRegister.getUser("111-1111", "password");
