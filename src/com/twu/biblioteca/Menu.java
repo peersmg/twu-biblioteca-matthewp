@@ -116,6 +116,9 @@ public class Menu {
             case 7:
                 response = logIn();
                 break;
+            case 8:
+                response = getUserInfo();
+                break;
             case 0:
                 setApplicationRunning(false);
                 response = "Exiting application...";
@@ -126,6 +129,16 @@ public class Menu {
         }
 
         return response;
+    }
+
+    private String getUserInfo()
+    {
+        if(currentUser == null)
+        {
+            return "Please log in to use this command.";
+        }
+
+        return  String.format("%s | %s | %s", currentUser.getName(), currentUser.getEmail(), currentUser.getPhoneNumber());
     }
 
     private String logIn()
