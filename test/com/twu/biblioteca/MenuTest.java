@@ -50,7 +50,7 @@ public class MenuTest {
     }
 
     @Test
-    public void loggedOutInUserInfo()
+    public void loggedOutUserInfo()
     {
         assertThat(testMenu.actOnSelection(PRINT_USER_INFO), is("Please log in to use this command."));
     }
