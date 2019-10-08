@@ -15,12 +15,14 @@ public class MenuTest {
     private static final int PRINT_ALL_BOOKS_SELECTION = 1;
     private static final int PRINT_CHECKED_OUT_SELECTION = 3;
     private static final int PRINT_ALL_MOVIES_SELECTION = 5;
+    private static final int PRINT_USER_INFO = 8;
 
     @Before
     public void init(){
         ItemStorage dummyBooks = new ItemStorage();
         ItemStorage dummyMovies = new ItemStorage();
         UserRegister dummyUsers = new UserRegister();
+        dummyUsers.addUser(new User("111-1111", "password", "Matt", "email@email.com", "07965330222"));
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         testMenu = new Menu(dummyBooks, dummyMovies, new IOHandler(new ByteArrayInputStream("3".getBytes()), output),dummyUsers);
     }
@@ -45,6 +47,18 @@ public class MenuTest {
         testMenu.setMovies(dummyMovies);
 
         assertThat(testMenu.actOnSelection(PRINT_ALL_MOVIES_SELECTION), is("1 | Test | Matt | 2019 | 5\n2 | Test1 | Matt1 | 2019 | 8"));
+    }
+
+    @Test
+    public void loggedOutInUserInfo()
+    {
+        assertThat(testMenu.actOnSelection(PRINT_USER_INFO), is("Please log in to use this command."));
+    }
+
+    @Test
+    public void loggedInUserInfo()
+    {
+        assertThat(testMenu.actOnSelection(PRINT_USER_INFO), is("Matt | email@email.com | 07965330222"));
     }
 
     @Test
