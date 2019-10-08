@@ -12,6 +12,7 @@ import static org.junit.Assert.assertThat;
 
 public class MenuTest {
     private Menu testMenu;
+    private  UserRegister dummyUsers;
     private static final int PRINT_ALL_BOOKS_SELECTION = 1;
     private static final int PRINT_CHECKED_OUT_SELECTION = 3;
     private static final int PRINT_ALL_MOVIES_SELECTION = 5;
@@ -21,7 +22,7 @@ public class MenuTest {
     public void init(){
         ItemStorage dummyBooks = new ItemStorage();
         ItemStorage dummyMovies = new ItemStorage();
-        UserRegister dummyUsers = new UserRegister();
+        dummyUsers = new UserRegister();
         dummyUsers.addUser(new User("111-1111", "password", "Matt", "email@email.com", "07965330222"));
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         testMenu = new Menu(dummyBooks, dummyMovies, new IOHandler(new ByteArrayInputStream("3".getBytes()), output),dummyUsers);
@@ -58,6 +59,7 @@ public class MenuTest {
     @Test
     public void loggedInUserInfo()
     {
+        testMenu.setCurrentUser(dummyUsers.getUser("111-1111", "password"));
         assertThat(testMenu.actOnSelection(PRINT_USER_INFO), is("Matt | email@email.com | 07965330222"));
     }
 
