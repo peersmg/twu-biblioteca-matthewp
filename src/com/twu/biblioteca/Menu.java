@@ -38,7 +38,7 @@ public class Menu {
     private void getUserSelection(){
 
         inputOutput.printMessage("Options: Show Available Books [1] | Check out book [2] | Show checked out books [3] | Return a book [4]\n" +
-                "Show Available Movies [5] | Checkout Movie [6] | Log In/Out [7] | Exit Application [0]");
+                "Show Available Movies [5] | Checkout Movie [6] | Log In/Out [7] | Show my info [8] | Exit Application [0]");
 
         int selection = inputOutput.requestInt("Please enter selection: ");
 
