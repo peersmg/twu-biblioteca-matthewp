@@ -1,0 +1,60 @@
+1. Who checked out the book 'The Hobbit’?
+Answer: 
+Anand Beck
+
+Query:
+SELECT member.name 
+FROM member, checkout_item, book 
+WHERE member.id = checkout_item.member_id 
+AND book.id = checkout_item.book_id
+AND book.title = 'The Hobbit';
+
+2. How many people have not checked out anything?
+Answer:
+37
+
+Query:
+SELECT COUNT(DISTINCT member.id)
+FROM member, checkout_item
+WHERE member.id NOT IN(SELECT checkout_item.member_id FROM checkout_item)
+
+3. What books and movies aren't checked out?
+Answer:
+1984
+Catcher in the Rye
+Domain Driven Design
+Fellowship of the Ring
+To Kill a Mockingbird
+Tom Sawyer
+Crouching Tiger, Hidden Dragon
+Lawrence of Arabia
+Office Space
+Thin Red Line
+
+Query:
+SELECT DISTINCT book.title
+FROM book, checkout_item
+WHERE book.id NOT IN(SELECT checkout_item.book_id FROM checkout_item WHERE checkout_item.book_id IS NOT NULL);
+SELECT DISTINCT movie.title
+FROM movie, checkout_item
+WHERE movie.id NOT IN(SELECT checkout_item.movie_id FROM checkout_item WHERE checkout_item.movie_id IS NOT NULL);
+
+4. Add the book 'The Pragmatic Programmer', and add yourself as a member. Check out 'The Pragmatic Programmer'. Use your query from question 1 to verify that you have checked it out. Also, provide the SQL used to update the database.
+Query:
+INSERT INTO book VALUES(11,'The Pragmatic Programmer');
+INSERT INTO member VALUES(43,'Matthew Peers');
+INSERT INTO checkout_item VALUES(43, 11, NULL);
+
+5. Who has checked out more than 1 item? 
+Answer:
+Anand Beck
+Frank Smith
+
+Query:
+SELECT member.name
+FROM member
+WHERE member.id IN(
+	SELECT checkout_item.member_id 
+	FROM checkout_item 
+	GROUP BY checkout_item.member_id 
+	HAVING COUNT(member_id) > 1) 
